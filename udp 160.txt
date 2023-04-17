@@ -1,0 +1,190 @@
+default
+	Connected to 00:03:7f:12:69:83 (on wlan0)
+        SSID: nipf_perf-test01_HKNPRPERF5G_ota
+        freq: 5220
+        RX: 2565896810 bytes (29112694 packets)
+        TX: 3967784152 bytes (354 packets)
+        signal: -30 dBm
+        tx bitrate: 1200.9 MBit/s 80MHz
+
+	$ iperf -s -i 1 -w 8m
+	taro:/ # iperf -c 192.168.1.99 -w 8m -i 1 -t 60
+	------------------------------------------------------------
+	Client connecting to 192.168.1.99, TCP port 5001
+	TCP window size: 16.0 MByte (WARNING: requested 8.00 MByte)
+	------------------------------------------------------------
+	[  3] local 192.168.1.138 port 45444 connected with 192.168.1.99 port 5001
+	[ ID] Interval       Transfer     Bandwidth
+	[  3]  0.0- 1.0 sec   122 MBytes  1.02 Gbits/sec
+	[  3]  1.0- 2.0 sec   117 MBytes   978 Mbits/sec
+	[  3]  2.0- 3.0 sec   116 MBytes   975 Mbits/sec
+	[  3]  3.0- 4.0 sec   108 MBytes   908 Mbits/sec
+	[  3]  4.0- 5.0 sec   117 MBytes   978 Mbits/sec
+	[  3]  5.0- 6.0 sec   115 MBytes   968 Mbits/sec
+	[  3]  6.0- 7.0 sec   115 MBytes   965 Mbits/sec
+	[  3]  7.0- 8.0 sec   115 MBytes   967 Mbits/sec
+	[  3]  8.0- 9.0 sec   112 MBytes   943 Mbits/sec
+	[  3]  9.0-10.0 sec   118 MBytes   988 Mbits/sec
+	[  3] 10.0-11.0 sec   117 MBytes   981 Mbits/sec
+	[  3] 11.0-12.0 sec   113 MBytes   947 Mbits/sec
+	[  3] 12.0-13.0 sec   118 MBytes   994 Mbits/sec
+	[  3] 13.0-14.0 sec   116 MBytes   973 Mbits/sec
+	[  3] 14.0-15.0 sec   109 MBytes   913 Mbits/sec
+	^C[  3]  0.0-15.8 sec  1.78 GBytes   968 Mbits/sec
+
+
+
+
+change bdf -- bdwlan.e9a
+	
+	taro:/ # iperf -c 192.168.1.99 -w 8m -i 1 -t 60
+	------------------------------------------------------------
+	Client connecting to 192.168.1.99, TCP port 5001
+	TCP window size: 16.0 MByte (WARNING: requested 8.00 MByte)
+	------------------------------------------------------------
+	[  3] local 192.168.1.138 port 45452 connected with 192.168.1.99 port 5001
+	[ ID] Interval       Transfer     Bandwidth
+	[  3]  0.0- 1.0 sec   211 MBytes  1.77 Gbits/sec
+	[  3]  1.0- 2.0 sec   205 MBytes  1.72 Gbits/sec
+	[  3]  2.0- 3.0 sec   204 MBytes  1.71 Gbits/sec
+	[  3]  3.0- 4.0 sec   203 MBytes  1.70 Gbits/sec
+	[  3]  4.0- 5.0 sec   202 MBytes  1.69 Gbits/sec
+	[  3]  5.0- 6.0 sec   212 MBytes  1.78 Gbits/sec
+	[  3]  6.0- 7.0 sec   198 MBytes  1.66 Gbits/sec
+	[  3]  7.0- 8.0 sec   218 MBytes  1.83 Gbits/sec
+	[  3]  8.0- 9.0 sec   191 MBytes  1.60 Gbits/sec
+	[  3]  9.0-10.0 sec   206 MBytes  1.73 Gbits/sec
+	^C[  3]  0.0-11.0 sec  2.19 GBytes  1.71 Gbits/sec
+	
+	
+UDP	
+	iperf -s -i 1 -w 8m -u -p 5001
+	iperf -c 192.168.1.99 -u -i 1 -t 60 -b 1000m -p 5001 -P 4
+	
+	
+	[  5]  0.0-51.0 sec  1.60 GBytes   270 Mbits/sec   0.927 ms   81/1171336 (0.0069%)
+	[  5]  0.0-51.0 sec  82 datagrams received out-of-order
+	[  7]  0.0-51.1 sec  1.61 GBytes   270 Mbits/sec   1.934 ms   32/1174342 (0.0027%)
+	[  7]  0.0-51.1 sec  33 datagrams received out-of-order
+	[  6]  0.0-51.1 sec  1.60 GBytes   269 Mbits/sec   2.979 ms   50/1170334 (0.0043%)
+	[  6]  0.0-51.1 sec  51 datagrams received out-of-order
+	[  3]  0.0-51.1 sec  1.60 GBytes   270 Mbits/sec   3.941 ms  183/1171249 (0.016%)
+	[  3]  0.0-51.1 sec  184 datagrams received out-of-order
+	[SUM]  0.0-51.1 sec  6.42 GBytes  1.08 Gbits/sec
+	
+	iperf -s -i 1 -w 8m -u -p 5002
+	iperf -c 192.168.1.99 -u -i 1 -t 60 -b 1000m -p 5002 -P4
+	
+	[SUM] 35.0-36.0 sec   139 MBytes  1.16 Gbits/sec
+	[  1]  0.0-36.0 sec   973 MBytes   227 Mbits/sec   0.613 ms   40/693972 (0.0058%)
+	[  1]  0.0-36.0 sec  41 datagrams received out-of-order
+	[  5]  0.0-36.0 sec   973 MBytes   226 Mbits/sec   1.741 ms   34/693743 (0.0049%)
+	[  5]  0.0-36.0 sec  35 datagrams received out-of-order
+	[  4]  0.0-36.0 sec   972 MBytes   226 Mbits/sec   2.652 ms   33/693322 (0.0048%)
+	[  4]  0.0-36.0 sec  34 datagrams received out-of-order
+	[SUM]  0.0-36.0 sec  3.80 GBytes   905 Mbits/sec
+	
+	======================================= total around 1.9
+	
+	iperf -s -i 1 -w 8m -u -p 5001
+	iperf -c 192.168.1.99 -u -i 1 -t 60 -b 1000m -p 5001 -P 4
+	
+	[  1]  0.0-22.4 sec   994 MBytes   372 Mbits/sec   0.042 ms   98/709242 (0.014%)
+	[  1]  0.0-22.4 sec  99 datagrams received out-of-order
+	[  3]  0.0-22.4 sec   996 MBytes   372 Mbits/sec   0.978 ms   53/710590 (0.0075%)
+	[  3]  0.0-22.4 sec  54 datagrams received out-of-order
+	[  4]  0.0-22.5 sec   995 MBytes   372 Mbits/sec   1.996 ms    2/709594 (0.00028%)
+	[  4]  0.0-22.5 sec  181 datagrams received out-of-order
+	[  5]  0.0-22.5 sec   994 MBytes   371 Mbits/sec   2.842 ms   55/709447 (0.0078%)
+	[  5]  0.0-22.5 sec  151 datagrams received out-of-order
+	[SUM]  0.0-22.5 sec  3.89 GBytes  1.49 Gbits/sec
+	
+	======================================= total around 1.49
+	
+	Conclusion:
+	Need iperf run in multi termimal
+	
+	
+	iperf -s -i 1 -w 8m -u -p 5001
+	iperf -c 192.168.1.99 -u -i 1 -t 60 -b 1000m -p 5001 -P 10
+	[ 31]  0.0- 7.3 sec   161 MBytes   185 Mbits/sec   4.988 ms  134/115246 (0.12%)
+	[ 31]  0.0- 7.3 sec  140 datagrams received out-of-order
+	[ 27]  0.0- 7.3 sec   163 MBytes   186 Mbits/sec   5.930 ms   70/116036 (0.06%)
+	[ 27]  0.0- 7.3 sec  30 datagrams received out-of-order
+	[ 34]  0.0- 7.4 sec   162 MBytes   185 Mbits/sec   6.831 ms  219/115885 (0.19%)
+	[ 34]  0.0- 7.4 sec  65 datagrams received out-of-order
+	[ 33]  0.0- 7.4 sec   160 MBytes   182 Mbits/sec   7.837 ms  223/114673 (0.19%)
+	[ 33]  0.0- 7.4 sec  70 datagrams received out-of-order
+	[ 24]  0.0- 7.4 sec   163 MBytes   185 Mbits/sec   8.715 ms   66/116550 (0.057%)
+	[ 24]  0.0- 7.4 sec  67 datagrams received out-of-order
+	[SUM]  0.0- 7.4 sec  1.58 GBytes  1.84 Gbits/sec
+	
+	=========================================
+	iperf -s -i1 -w2M -u -p 5010
+	iperf -c 192.168.1.99 -u -i 1 -t 60 -b 250m -p 5001 -P 10
+	
+	17]  0.0- 5.6 sec  25 datagrams received out-of-order
+	[ 15]  0.0- 5.7 sec   122 MBytes   180 Mbits/sec   4.683 ms   32/86680 (0.037%)
+	[ 15]  0.0- 5.7 sec  33 datagrams received out-of-order
+	[ 16]  0.0- 5.7 sec   122 MBytes   181 Mbits/sec   5.767 ms    9/87204 (0.01%)
+	[ 16]  0.0- 5.7 sec  10 datagrams received out-of-order
+	[ 19]  0.0- 5.7 sec   123 MBytes   181 Mbits/sec   6.796 ms   51/87620 (0.058%)
+	[ 19]  0.0- 5.7 sec  52 datagrams received out-of-order
+	[ 14]  0.0- 5.7 sec   122 MBytes   180 Mbits/sec   7.830 ms   41/87213 (0.047%)
+	[ 14]  0.0- 5.7 sec  42 datagrams received out-of-order
+	[ 18]  0.0- 5.7 sec   122 MBytes   179 Mbits/sec   8.497 ms   13/87157 (0.015%)
+	[ 18]  0.0- 5.7 sec  14 datagrams received out-of-order
+	[SUM]  0.0- 5.7 sec  1.19 GBytes  1.79 Gbits/sec
+	
+	========================================= 
+	iperf -s -i1 -u -p 5010
+	iperf -c 192.168.1.99 -u -i 1 -t 60 -b 250m -p 5010 -P 10 -w2m
+	
+	[  5]  0.0- 5.1 sec  128 datagrams received out-of-order
+	[  8]  0.0- 5.1 sec   125 MBytes   206 Mbits/sec   4.370 ms 13781/102714 (13%)
+	[  8]  0.0- 5.1 sec  46 datagrams received out-of-order
+	[  6]  0.0- 5.1 sec   125 MBytes   205 Mbits/sec   5.368 ms 13653/102473 (13%)
+	[  6]  0.0- 5.1 sec  10 datagrams received out-of-order
+	[ 10]  0.0- 5.1 sec   123 MBytes   203 Mbits/sec   6.365 ms 13689/101690 (13%)
+	[ 10]  0.0- 5.1 sec  55 datagrams received out-of-order
+	[  9]  0.0- 5.1 sec   125 MBytes   204 Mbits/sec   7.297 ms 13924/102913 (14%)
+	[  9]  0.0- 5.1 sec  65 datagrams received out-of-order
+	[SUM]  0.0- 5.1 sec  1.21 GBytes  2.04 Gbits/sec
+	recvfrom failed: Interrupted function call.
+	=========================================
+	iperf -s -i1 -w2M -u -p 5010
+	iperf -c 192.168.1.99 -u -i 1 -t 60 -b 250m -p 5010 -P 10 -w2m    
+	
+	10]  0.0- 5.1 sec   124 MBytes   203 Mbits/sec   4.435 ms 14419/102765 (14%)
+	[ 10]  0.0- 5.1 sec  60 datagrams received out-of-order
+	[  1]  0.0- 5.1 sec   126 MBytes   205 Mbits/sec   5.635 ms 14339/104152 (14%)
+	[  1]  0.0- 5.1 sec  144 datagrams received out-of-order
+	[  7]  0.0- 5.2 sec   124 MBytes   201 Mbits/sec   6.629 ms 14216/102493 (14%)
+	[  7]  0.0- 5.2 sec  70 datagrams received out-of-order
+	[  3]  0.0- 5.2 sec   124 MBytes   201 Mbits/sec   7.647 ms 14345/102909 (14%)
+	[  3]  0.0- 5.2 sec  46 datagrams received out-of-order
+	[ 11]  0.0- 5.2 sec   124 MBytes   200 Mbits/sec   9.293 ms 14644/102783 (14%)
+	[ 11]  0.0- 5.2 sec  196 datagrams received out-of-order
+	[SUM]  0.0- 5.2 sec  1.22 GBytes  2.01 Gbits/sec
+	
+	=========================================
+	iperf -s -i1 -w2M -u -p 5010
+	iperf -c 192.168.1.99 -i1 -w2M -t 60 -u -b 250M -P10 -p 5010
+	
+	
+	[ 11]  0.0- 4.0 sec  94.9 MBytes   200 Mbits/sec   7.098 ms 10904/78626 (14%)
+	[ 11]  0.0- 4.0 sec  113 datagrams received out-of-order
+	[  4]  0.0- 4.0 sec  95.7 MBytes   201 Mbits/sec   8.073 ms 11197/79443 (14%)
+	[  4]  0.0- 4.0 sec  158 datagrams received out-of-order
+	[  5]  3.0- 4.0 sec  21.0 MBytes   176 Mbits/sec   0.414 ms 2271/17219 (13%)
+	[  5]  0.0- 4.0 sec  94.5 MBytes   197 Mbits/sec   9.141 ms 11049/78470 (14%)
+	[  5]  0.0- 4.0 sec  49 datagrams received out-of-order
+	[SUM]  0.0- 4.0 sec   951 MBytes  1.99 Gbits/sec
+	
+	======================================= total around 1.99
+	
+	
+	
+	Concultion ::  -w2m in tx side is quite important 
+	
+	

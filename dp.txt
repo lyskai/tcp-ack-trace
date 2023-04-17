@@ -1,0 +1,14 @@
+python C:\Users\kaliu\Desktop\wlan_stats\wlan_stats.py -i wlan0 -iter 10 -interval 1 --tcpdump 5 --execution_style serial -o DBS_DBG_LOG -d waipio --debug -s 8532355d
+
+
+iperf -c 192.168.15.248 -i1 -w2M -t 60 -u -b 250M -P10 -p 5010
+iperf -s -i1 -w2M -u -p 5010
+
+
+
+ iperf -c 192.168.15.248 -i1 -w8M -t 60  -P10
+ iperf -s -i1 -w 10M
+ 
+ ============================================================
+ iperf -s -i1 -w2M -p 5011
+ iperf -c 192.168.1.214 -i1 -w2M -t 6000  -P10 -p 5010
